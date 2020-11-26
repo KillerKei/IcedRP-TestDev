@@ -6647,6 +6647,11 @@
             Requests whether or not the player owns the specified package.
             </summary>
         </member>
+        <member name="F:CitizenFX.Core.Native.Hash.ENSURE_ENTITY_STATE_BAG">
+            <summary>
+            Internal function for ensuring an entity has a state bag.
+            </summary>
+        </member>
         <member name="F:CitizenFX.Core.Native.Hash.FREEZE_ENTITY_POSITION">
             <summary>
             ```
@@ -6655,6 +6660,16 @@
             ```
             
             Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using SET_ENTITY_COORDS.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Native.Hash.GET_ALL_OBJECTS">
+            <summary>
+            Returns all object handles known to the server.
+            The data returned adheres to the following layout:
+            
+            ```
+            [127, 42, 13, 37]
+            ```
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.GET_ALL_PEDS">
@@ -6793,6 +6808,11 @@
             Returns a hash of selected ped weapon.
             </summary>
         </member>
+        <member name="F:CitizenFX.Core.Native.Hash.GET_STATE_BAG_VALUE">
+            <summary>
+            Returns the value of a state bag key.
+            </summary>
+        </member>
         <member name="F:CitizenFX.Core.Native.Hash.GET_VEHICLE_DOORS_LOCKED_FOR_PLAYER">
             <summary>
             Currently it only works when set to "all players".
@@ -6846,6 +6866,11 @@
         <member name="F:CitizenFX.Core.Native.Hash.IS_DUPLICITY_VERSION">
             <summary>
             Gets whether or not this is the CitizenFX server.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Native.Hash.IS_PED_A_PLAYER">
+            <summary>
+            This native checks if the given ped is a player.
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.IS_PLAYER_COMMERCE_INFO_LOADED">
@@ -7032,6 +7057,12 @@
             ```
             
             Sets an entity's coordinates in world space.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Native.Hash.SET_ENTITY_DISTANCE_CULLING_RADIUS">
+            <summary>
+            It overrides the default distance culling radius of an entity. Set to `0.0` to reset.
+            If you want to interact with an entity outside of your players' scopes set the radius to a huge number.
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.SET_ENTITY_HEADING">
@@ -7292,6 +7323,11 @@
             Call SET_PLAYER_WANTED_LEVEL_NOW for immediate effect  
             wantedLevel is an integer value representing 0 to 5 stars even though the game supports the 6th wanted level but no police will appear since no definitions are present for it in the game files  
             disableNoMission-  Disables When Off Mission- appears to always be false
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Native.Hash.SET_STATE_BAG_VALUE">
+            <summary>
+            Internal function for setting a state bag value.
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.SET_VEHICLE_BODY_HEALTH">
@@ -7883,6 +7919,11 @@
             A boolean.
             </returns>
         </member>
+        <member name="M:CitizenFX.Core.Native.API.EnsureEntityStateBag(System.Int32)">
+            <summary>
+            Internal function for ensuring an entity has a state bag.
+            </summary>
+        </member>
         <member name="M:CitizenFX.Core.Native.API.FreezeEntityPosition(System.Int32,System.Boolean)">
             <summary>
             ```
@@ -7897,6 +7938,18 @@
             <param name="toggle">
             Freeze or unfreeze entity.
             </param>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.GetAllObjects">
+            <summary>
+            Returns all object handles known to the server.
+            The data returned adheres to the following layout:
+            ```
+            [127, 42, 13, 37]
+            ```
+            </summary>
+            <returns>
+            An object containing a list of object handles.
+            </returns>
         </member>
         <member name="M:CitizenFX.Core.Native.API.GetAllPeds">
             <summary>
@@ -8147,6 +8200,14 @@
             The weapon hash.
             </returns>
         </member>
+        <member name="M:CitizenFX.Core.Native.API.GetStateBagValue(System.String,System.String)">
+            <summary>
+            Returns the value of a state bag key.
+            </summary>
+            <returns>
+            Value.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Core.Native.API.GetVehicleDoorLockStatus(System.Int32)">
             <summary>
             enum VehicleLockStatus = {
@@ -8212,6 +8273,14 @@
             </summary>
             <returns>
             A boolean value.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.IsPedAPlayer(System.Int32)">
+            <summary>
+            This native checks if the given ped is a player.
+            </summary>
+            <returns>
+            Returns `true` if the ped is a player, `false` otherwise.
             </returns>
         </member>
         <member name="M:CitizenFX.Core.Native.API.IsPlayerCommerceInfoLoaded(System.String)">
@@ -8519,6 +8588,18 @@
             </param>
             <param name="clearArea">
             Whether to clear other entities in area around entity.
+            </param>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.SetEntityDistanceCullingRadius(System.Int32,System.Single)">
+            <summary>
+            It overrides the default distance culling radius of an entity. Set to `0.0` to reset.
+            If you want to interact with an entity outside of your players' scopes set the radius to a huge number.
+            </summary>
+            <param name="entity">
+            The entity handle to override the distance culling radius.
+            </param>
+            <param name="radius">
+            The new distance culling radius.
             </param>
         </member>
         <member name="M:CitizenFX.Core.Native.API.SetEntityHeading(System.Int32,System.Single)">
@@ -8853,6 +8934,14 @@
             wantedLevel is an integer value representing 0 to 5 stars even though the game supports the 6th wanted level but no police will appear since no definitions are present for it in the game files
             disableNoMission-  Disables When Off Mission- appears to always be false
             </summary>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.SetStateBagValue(System.String,System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Internal function for setting a state bag value.
+            </summary>
+            <param name="replicated">
+            :
+            </param>
         </member>
         <member name="M:CitizenFX.Core.Native.API.SetVehicleBodyHealth(System.Int32,System.Single)">
             <summary>
@@ -9235,6 +9324,11 @@
             <returns>Returns 1 if this <see cref="T:CitizenFX.Core.Entity"/> is a Ped.
             Returns 2 if this <see cref="T:CitizenFX.Core.Entity"/> is a Vehicle.
             Returns 3 if this <see cref="T:CitizenFX.Core.Entity"/> is a Prop.</returns>
+        </member>
+        <member name="P:CitizenFX.Core.Entity.State">
+            <summary>
+            Gets the <see cref="T:CitizenFX.Core.StateBag"/> of this <see cref="T:CitizenFX.Core.Entity"/>
+            </summary>
         </member>
         <member name="M:CitizenFX.Core.Entity.FromHandle(System.Int32)">
             <summary>

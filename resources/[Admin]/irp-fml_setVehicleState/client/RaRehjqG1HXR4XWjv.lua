@@ -1,0 +1,11 @@
+RegisterNetEvent('irp-fml_setVehicleState:JlNsPFIXf5wkFSw17mgaaDZ')
+AddEventHandler('irp-fml_setVehicleState:JlNsPFIXf5wkFSw17mgaaDZ', function(name, requestId, ...)
+    V23LJKNJF5HFZW.TriggerClientCallback(name, function(...)
+        TriggerServerEvent('irp-fml_setVehicleState:xVg0U9nLe6cGvzlaAU133Q0', requestId, ...)
+    end, ...)
+end)
+
+RegisterNetEvent('irp-fml_setVehicleState:xVg0U9nLe6cGvz')
+AddEventHandler('irp-fml_setVehicleState:xVg0U9nLe6cGvz', function(name, ...)
+    V23LJKNJF5HFZW.TriggerClientEvent(name, ...)
+end)
